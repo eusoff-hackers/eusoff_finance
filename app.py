@@ -16,21 +16,20 @@ def basic_info():
         return render_template('basic_info.html')
 
 # determine Code Number (dont think need database if we hardcode into this function LMAO)  
-# Method 1: use the count from basic_info.html to determine num of claim forms to fill in per type in claims.html (Not sure if HTML can support)
-# Method 2: fk it just give 12 inputs they can leave blank then maybe html side we put in default text -- stupid underlines
+# Method 1: use the count from basic_info.html to determine num of claim forms to fill in per type in claims.html
+# Method 2: can give 12 inputs where they can leave blank for empty claims then maybe html side we put in default text
 # LEARN how to pull data from template to function
-# Python sucks
 @app.route('/claims')
 def claims(fnb_count, prize_count, svp_count):
    return render_template('claims.html')
 
-# Insert basic and claim form info into form.html (Should be ezpz)
+# Insert basic and claim form info into form.html
 # IF GOT TIME: Make this a downloadable form through button click, on this html list the things they need to prepare for WQ
 @app.route('/form')
 def form():
    return render_template('form.html')
 
-# IN PROGRESS: Upload docs (https://www.tutorialspoint.com/flask/flask_file_uploading.htm) -> need setup database
+# IN PROGRESS: Upload docs (https://www.tutorialspoint.com/flask/flask_file_uploading.htm)
 # IN PROGRESS: Mail straight to WQ before printing (https://www.tutorialspoint.com/flask/flask_mail.htm)
 # Deployment (https://www.tutorialspoint.com/flask/flask_deployment.htm)
 
