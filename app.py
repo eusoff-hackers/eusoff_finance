@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for
+import datetime
 app = Flask(__name__)
 app.debug = True
+
+dict = {}
 
 @app.route('/')
 def basic_info():
@@ -12,6 +15,8 @@ def basic_info():
 # LEARN how to pull data from template to function
 @app.route('/claims', methods = ['POST', 'GET'])
 def claims():
+    # print(request.form)
+    dict.update(request.form)
     if request.method == 'POST':
         return render_template('claims.html')
 
@@ -20,12 +25,23 @@ def claims():
 # LEARN how to present data from function to template
 @app.route('/form', methods = ['POST', 'GET'])
 def form():
+    dict.update(request.form)
+    name = dict["name"]
+    matric = dict["matric"]
+    contact = dict["contact"]
+    event = dict["event"]
+    ref = dict["ref"]
+    old_date = dict["date"]
+    datetimeobject = datetime.datetime.strptime(old_date, '%Y-%m-%d')
+    date = datetimeobject.strftime('%d/%m/%Y')
+
+    print(dict)
     if request.method == 'POST':
-        return render_template('form.html')
+        return render_template('form.html', name = name, matric = matric, contact = contact, event = event, ref = ref, date = date)
 
 # IN PROGRESS: Upload docs (https://www.tutorialspoint.com/flask/flask_file_uploading.htm)
 # IN PROGRESS: Mail straight to WQ before printing (https://www.tutorialspoint.com/flask/flask_mail.htm)
 # Deployment (https://www.tutorialspoint.com/flask/flask_deployment.htm)
 
 if __name__ == '__main__':
-   app.run()
+   app.run(debug = True)
