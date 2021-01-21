@@ -41,6 +41,27 @@ def formB():
 def formA1():
     return render_template('formA1.html')
 
+# incomplete!
+@app.route('/formA2')
+def formA2():
+    return render_template('formA2.html')
+
+# incomplete!
+@app.route('/formC')
+def formC():
+    return render_template('formC.html')
+
+# incomplete!
+@app.route('/formD')
+def formD():
+    return render_template('formD.html')
+
+
+# incomplete!
+@app.route('/formE')
+def formE():
+    return render_template('formE.html')
+
 # IN PROGRESS: Upload receipts (https://www.tutorialspoint.com/flask/flask_file_uploading.htm)
 # IN PROGRESS: Mail? For those that need approval first (https://www.tutorialspoint.com/flask/flask_mail.htm)
 # Deployment (https://www.tutorialspoint.com/flask/flask_deployment.htm)
