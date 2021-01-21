@@ -18,6 +18,21 @@ def claims():
     if request.method == 'POST':
         return render_template('claims.html')
 
+# incomplete!
+@app.route('/formA')
+def formA():
+    return render_template('formA.html')
+
+# incomplete!
+@app.route('/formA1')
+def formA1():
+    return render_template('formA1.html')
+
+# incomplete!
+@app.route('/formA2')
+def formA2():
+    return render_template('formA2.html')
+
 # incomplete: Auto-generate Code number
 # IF GOT TIME: Make this a downloadable form through button click, on this html list the things they need to prepare for WQ
 @app.route('/formB', methods = ['POST', 'GET'])
@@ -35,16 +50,6 @@ def formB():
     # print(dict)
     if request.method == 'POST':
         return render_template('form.html', name = name, matric = matric, contact = contact, event = event, ref = ref, date = date)
-
-# incomplete!
-@app.route('/formA1')
-def formA1():
-    return render_template('formA1.html')
-
-# incomplete!
-@app.route('/formA2')
-def formA2():
-    return render_template('formA2.html')
 
 # incomplete!
 @app.route('/formC')
