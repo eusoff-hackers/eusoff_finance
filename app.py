@@ -6,9 +6,13 @@ app.debug = True
 # everything is stored in this dictionary
 dict = {}
 
-@app.route('/')
+@app.route('/basic_info')
 def basic_info():
     return render_template('basic_info.html')
+
+@app.route('/')
+def index():
+    return render_template('index.html')    
 
 # incomplete: Auto-generate Ref number (eg: SMC2021-number > [COMM][AY]-[NUM][T/C/E])
 @app.route('/claims', methods = ['POST', 'GET'])
