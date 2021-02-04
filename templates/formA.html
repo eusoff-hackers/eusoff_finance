@@ -9,13 +9,13 @@
     <p style="text-align: right;"><em>Appendix A</em></p>
     <p style="text-align: left;">Note: This is an attachment.</p>
     <p style="text-align: center;"><span style="text-decoration: underline;"><strong>ACKNOWLEDGEMENT RECEIPT </strong></span></p>
-    <p>Reference No. of Form: <span style="text-decoration: underline;">         </span></p>
-    <p>Date (dd/mm/yyyy) : <span style="text-decoration: underline;">         </span></p>
-    <p>Total Amount (S$): <span style="text-decoration: underline;">         </span></p>
-    <p>Name of Claimant: <span style="text-decoration: underline;">         </span></p>
-    <p>Matric Number : <span style="text-decoration: underline;">         </span></p>
-    <p>Room No. (Eusoff Hall): <span style="text-decoration: underline;">         </span></p>
-    <p>Contact Number: <span style="text-decoration: underline;">         </span></p>
+    <p>Reference No. of Form: <span style="text-decoration: underline;">&nbsp; &nbsp; {{input_dict.refnum}}&nbsp; &nbsp; </span></p>
+    <p>Date (dd/mm/yyyy) : <span style="text-decoration: underline;">&nbsp; &nbsp; {{date}}&nbsp; &nbsp; </span></p>
+    <p>Total Amount (S$): <span style="text-decoration: underline;">&nbsp; &nbsp; {{input_dict.totalamt}}&nbsp; &nbsp; </span></p>
+    <p>Name of Claimant: <span style="text-decoration: underline;">&nbsp; &nbsp; {{input_dict.name}}&nbsp; &nbsp; </span></p>
+    <p>Matric Number : <span style="text-decoration: underline;">&nbsp; &nbsp; {{input_dict.matric}}&nbsp; &nbsp; </span></p>
+    <p>Room No. (Eusoff Hall): <span style="text-decoration: underline;">&nbsp; &nbsp; {{input_dict.roomnum}}&nbsp; &nbsp; </span></p>
+    <p>Contact Number: <span style="text-decoration: underline;">&nbsp; &nbsp; {{input_dict.contact}}&nbsp; &nbsp; </span></p>
     <p>The breakdown of details are as follows:</p>
     <table style="border-collapse: collapse; width: 100%;" border="1">
     <tbody>
@@ -27,39 +27,39 @@
     <td style="width: 20%;">Amount (S$)</td>
     </tr>
     <tr>
-    <td style="width: 20%;"> </td>
-    <td style="width: 20%;"> </td>
-    <td style="width: 20%;"> </td>
-    <td style="width: 20%;"> </td>
-    <td style="width: 20%;"> </td>
+    <td style="width: 20%;">&nbsp; {{input_dict.code1}}</td>
+    <td style="width: 20%;">&nbsp; {{input_dict.item1}}</td>
+    <td style="width: 20%;">&nbsp; {{input_dict.supname1}}</td>
+    <td style="width: 20%;">&nbsp; {{input_dict.supcontact1}}</td>
+    <td style="width: 20%;">&nbsp; {{input_dict.amount1}}</td>
     </tr>
     <tr>
-    <td style="width: 20%;"> </td>
-    <td style="width: 20%;"> </td>
-    <td style="width: 20%;"> </td>
-    <td style="width: 20%;"> </td>
-    <td style="width: 20%;"> </td>
+    <td style="width: 20%;">&nbsp; {{input_dict.code2}}</td>
+    <td style="width: 20%;">&nbsp; {{input_dict.item2}}</td>
+    <td style="width: 20%;">&nbsp; {{input_dict.supname2}}</td>
+    <td style="width: 20%;">&nbsp; {{input_dict.supcontact2}}</td>
+    <td style="width: 20%;">&nbsp; {{input_dict.amount2}}</td>
     </tr>
     <tr>
-    <td style="width: 20%;"> </td>
-    <td style="width: 20%;"> </td>
-    <td style="width: 20%;"> </td>
-    <td style="width: 20%;"> </td>
-    <td style="width: 20%;"> </td>
+    <td style="width: 20%;">&nbsp; {{input_dict.code3}}</td>
+    <td style="width: 20%;">&nbsp; {{input_dict.item3}}</td>
+    <td style="width: 20%;">&nbsp; {{input_dict.supname3}}</td>
+    <td style="width: 20%;">&nbsp; {{input_dict.supcontact3}}</td>
+    <td style="width: 20%;">&nbsp; {{input_dict.amount3}}</td>
     </tr>
     <tr>
-    <td style="width: 20%;"> </td>
-    <td style="width: 20%;"> </td>
-    <td style="width: 20%;"> </td>
-    <td style="width: 20%;"> </td>
-    <td style="width: 20%;"> </td>
+    <td style="width: 20%;">&nbsp; {{input_dict.code4}}</td>
+    <td style="width: 20%;">&nbsp; {{input_dict.item4}}</td>
+    <td style="width: 20%;">&nbsp; {{input_dict.supname4}}</td>
+    <td style="width: 20%;">&nbsp; {{input_dict.supcontact4}}</td>
+    <td style="width: 20%;">&nbsp; {{input_dict.amount4}}</td>
     </tr>
     <tr>
-    <td style="width: 20%;"> </td>
-    <td style="width: 20%;"> </td>
-    <td style="width: 20%;"> </td>
-    <td style="width: 20%;"> </td>
-    <td style="width: 20%;"> </td>
+    <td style="width: 20%;">&nbsp; {{input_dict.code5}}</td>
+    <td style="width: 20%;">&nbsp; {{input_dict.item5}}</td>
+    <td style="width: 20%;">&nbsp; {{input_dict.supname5}}</td>
+    <td style="width: 20%;">&nbsp; {{input_dict.supcontact5}}</td>
+    <td style="width: 20%;">&nbsp; {{input_dict.amount5}}</td>
     </tr>
     </tbody>
     </table>
@@ -72,13 +72,13 @@
     </tbody>
     </table>
     <p>Declaration:</p>
-    <p>I,<span style="text-decoration: underline;">                             </span>  declare that the above items were purchased by me on <span style="text-decoration: underline;">                             </span> for the event <span style="text-decoration: underline;">                             </span> and this acknowledgement is used because</p>
-    <p style="text-align: center;"><span style="text-decoration: underline;">ORIGINAL RECEIPT LACK INFORMATION ON SUPPLIER / RECEIPT DAMAGED BEYOND SALVAGE / NO RECEIPT WAS ISSUED.</span>  </p>
+    <p>I,<span style="text-decoration: underline;">&nbsp; &nbsp; {{input_dict.name}}&nbsp; &nbsp; </span>  declare that the above items were purchased by me on <span style="text-decoration: underline;">&nbsp; &nbsp; {{date}}&nbsp; &nbsp; </span> for the event <span style="text-decoration: underline;">&nbsp; &nbsp; {{input_dict.event}}&nbsp; &nbsp; </span> and this acknowledgement is used because</p>
+    <p style="text-align: center;"><span style="text-decoration: underline;">&nbsp; {{reasonack}}&nbsp; </span>  </p>
     <h6 style="text-align: center;">(Delete where applicable)</h6>
     <p></p>
     <p>Claimant's Signature / Date: <span style="text-decoration: underline;">                             </span></p>
     <p>Reason (If no receipt was issued) / Other Remarks:</p>
-    <p><span style="text-decoration: underline;">                                                                                                                                                      </span></p>
+    <p><span style="text-decoration: underline;">&nbsp; &nbsp; {{remarks}}&nbsp; &nbsp; </span></p>
     <p>Witnessed by,                   Witnessed by,                   Authorised by,</p>
     <p>Name:                                Name: Nga Wan Qin        Name: Dr Lee Chian Chau</p>
     <p>Role:                                                                  Finance Director                  Domestic Bursar</p>
