@@ -6,9 +6,9 @@ app.debug = True
 # everything is stored in this dictionary
 dict = {}
 
-@app.route('/basic_info')
-def basic_info():
-    return render_template('basic_info.html')
+# @app.route('/basic_info')
+# def basic_info():
+#     return render_template('basic_info.html')
 
 @app.route('/')
 def index():
@@ -22,7 +22,7 @@ def claims():
     if request.method == 'POST':
         return render_template('claims.html')
 
-@app.route('/receipt_acknowledgement', methods = ['POST', 'GET'])
+@app.route('/basic_info', methods = ['POST', 'GET'])
 def formA_input():
     # print(request.form)
     dict.update(request.form)
@@ -46,12 +46,12 @@ def formA():
         reasonack = "ORIGINAL RECEIPT LACK INFORMATION ON SUPPLIER/RECEIPT DAMANGED BEYOND SALVAGE/NO RECEIPT WAS ISSUED"
     
     if dict["remarks"] == "":
-        remarks = "___"
+        remarks = " "
         print(remarks)
-        print('got it')
     else: 
         remarks = dict["remarks"]
-
+    
+    # totalA = float(dict["amount1"]) + float(dict["amount2"]) + float(dict["amount3"]) + float(dict["amount4"]) + float(dict["amount5"])
     return render_template('formA.html', date= date, input_dict= dict, reasonack= reasonack, remarks= remarks)
 
 # incomplete!
