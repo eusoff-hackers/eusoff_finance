@@ -1,0 +1,238 @@
+<!-- 1. Putting all 10 claim deets 2. Creating according to count -->
+<div class="row">
+    <div class="column"></div>
+    <div class="column"></div>
+</div>
+<style>
+    .column {
+    float: left;
+    width: 25%;
+  }
+  
+  /* Clear floats */
+  .row:after {
+    content: "";
+    display: table;
+     clear: both;
+  }
+  
+  /* Responsive layout - makes a two column-layout instead of four columns */
+  /* @media screen and (max-width: 900px) {
+    .column {
+      width: 50%;
+    }
+  } */
+  
+  /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+    }
+  }
+</style>
+
+<html>
+   <body>
+      <form action = "http://localhost:5000/formA " method = "post">
+        <div class="row">
+            <h2>Overall Details</h2>
+            <!-- can be linked from basic info -->
+            <p>Name: <input type = "text" name = "name" /></p>
+            <p>Matric: <input type = "text" name = "matric" /></p>
+            <p>Room Number: <input type = "text" name = "roomnum" /></p>
+            <p>Contact: <input type = "text" name = "contact" /></p>
+            <p>Event: <input type = "text" name = "event" /></p>
+            <p>Date: <input type = "date" name = "date" /></p>
+            <!-- can be linked from basic info -->
+            <p>Reference No. of Form: <input type = "text" name = "refnum" /></p>
+            <p>Total amount: <input type = "number" name = "totalamt" step=".01"/></p>
+            <label for="type">Reason for Acknowledgement:</label>
+                <select id="type" name="reasonack">
+                <option value="blank"></option>
+                <option value="lack_info">Original receipt lack information on supplier</option>
+                <option value="damage">Receipt damaged beyond salvage</option>
+                <option value="not_issued">No receipt was issued</option>
+                </select>
+            <p>Reason (If no receipt was issued)/ Other Remarks: <input type = 'text' name = 'remarks'/></p>
+                <br>
+                <br>
+        </div>
+
+        <div class="row">
+            <div class="column">
+                <h2>Details of Reimbursement Expenditure</h2>
+                <h3>Receipt #1</h3>
+                <p>Receipt Number: <input type = "text" name = "receipt1" /></p>
+                <p>Description of Expenses: <input type = "text" name = "description1" /></p>
+                <p>Amount: <input type = "number" name = "amount1" step=".01"/></p>
+                <label for="type">Receipt Type:</label>
+                <select id="type" name="type1">
+                <option value="blank"></option>
+                <option value="fnb">Food and Beverage</option>
+                <option value="prize">Prize</option>
+                <option value="svp">Small Value Purchase</option>
+                </select><br>
+                <br>
+
+                <h3>Receipt #2</h3>
+                <p>Receipt Number: <input type = "text" name = "receipt2" /></p>
+                <p>Description of Expenses: <input type = "text" name = "description2" /></p>
+                <p>Amount: <input type = "number" name = "amount2" step=".01"/></p>
+                <label for="type">Receipt Type:</label>
+                <select id="type" name="type2">
+                <option value="blank"></option>
+                <option value="fnb">Food and Beverage</option>
+                <option value="prize">Prize</option>
+                <option value="svp">Small Value Purchase</option>
+                </select><br>
+                <br>
+
+                <h3>Receipt #3</h3>
+                <p>Receipt Number: <input type = "text" name = "receipt3" /></p>
+                <p>Description of Expenses: <input type = "text" name = "description3" /></p>
+                <p>Amount: <input type = "number" name = "amount3" step=".01"/></p>
+                <label for="type">Receipt Type:</label>
+                <select id="type" name="type3">
+                <option value="blank"></option>
+                <option value="fnb">Food and Beverage</option>
+                <option value="prize">Prize</option>
+                <option value="svp">Small Value Purchase</option>
+                </select><br>
+                <br>
+
+                <h3>Receipt #4</h3>
+                <p>Receipt Number: <input type = "text" name = "receipt4" /></p>
+                <p>Description of Expenses: <input type = "text" name = "description4" /></p>
+                <p>Amount: <input type = "number" name = "amount4" step=".01"/></p>
+                <label for="type">Receipt Type:</label>
+                <select id="type" name="type4">
+                <option value="blank"></option>
+                <option value="fnb">Food and Beverage</option>
+                <option value="prize">Prize</option>
+                <option value="svp">Small Value Purchase</option>
+                </select><br>
+                <br>
+
+                <h3>Receipt #5</h3>
+                <p>Receipt Number: <input type = "text" name = "receipt5" /></p>
+                <p>Description of Expenses: <input type = "text" name = "description5" /></p>
+                <p>Amount: <input type = "number" name = "amount5" step=".01"/></p>
+                <label for="type">Receipt Type:</label>
+                <select id="type" name="type5">
+                <option value="blank"></option>
+                <option value="fnb">Food and Beverage</option>
+                <option value="prize">Prize</option>
+                <option value="svp">Small Value Purchase</option>
+                </select><br>
+                <br>
+
+                <h3>Receipt #6</h3>
+                <p>Receipt Number: <input type = "text" name = "receipt6" /></p>
+                <p>Description of Expenses: <input type = "text" name = "description6" /></p>
+                <p>Amount: <input type = "number" name = "amount6" step=".01"/></p>
+                <label for="type">Receipt Type:</label>
+                <select id="type" name="type6">
+                <option value="blank"></option>
+                <option value="fnb">Food and Beverage</option>
+                <option value="prize">Prize</option>
+                <option value="svp">Small Value Purchase</option>
+                </select><br>
+                <br>
+
+                <h3>Receipt #7</h3>
+                <p>Receipt Number: <input type = "text" name = "receipt7" /></p>
+                <p>Description of Expenses: <input type = "text" name = "description7" /></p>
+                <p>Amount: <input type = "number" name = "amount7" step=".01"/></p>
+                <label for="type">Receipt Type:</label>
+                <select id="type" name="type7">
+                <option value="blank"></option>
+                <option value="fnb">Food and Beverage</option>
+                <option value="prize">Prize</option>
+                <option value="svp">Small Value Purchase</option>
+                </select><br>
+                <br>
+
+                <h3>Receipt #8</h3>
+                <p>Receipt Number: <input type = "text" name = "receipt8" /></p>
+                <p>Description of Expenses: <input type = "text" name = "description8" /></p>
+                <p>Amount: <input type = "number" name = "amount8" step=".01"/></p>
+                <label for="type">Receipt Type:</label>
+                <select id="type" name="type8">
+                <option value="blank"></option>
+                <option value="fnb">Food and Beverage</option>
+                <option value="prize">Prize</option>
+                <option value="svp">Small Value Purchase</option>
+                </select><br>
+                <br>
+
+                <h3>Receipt #9</h3>
+                <p>Receipt Number: <input type = "text" name = "receipt9" /></p>
+                <p>Description of Expenses: <input type = "text" name = "description9" /></p>
+                <p>Amount: <input type = "number" name = "amount9" step=".01"/></p>
+                <label for="type">Receipt Type:</label>
+                <select id="type" name="type9">
+                <option value="blank"></option>
+                <option value="fnb">Food and Beverage</option>
+                <option value="prize">Prize</option>
+                <option value="svp">Small Value Purchase</option>
+                </select><br>
+                <br>
+
+                <h3>Receipt #10</h3>
+                <p>Receipt Number: <input type = "text" name = "receipt10" /></p>
+                <p>Description of Expenses: <input type = "text" name = "description10" /></p>
+                <p>Amount: <input type = "number" name = "amount10" step=".01"/></p>
+                <label for="type">Receipt Type:</label>
+                <select id="type" name="type10">
+                <option value="blank"></option>
+                <option value="fnb">Food and Beverage</option>
+                <option value="prize">Prize</option>
+                <option value="svp">Small Value Purchase</option>
+                </select>
+            </div>
+            <div class="column">
+                <h2>Details of Acknowledgement Receipt</h2>
+                <h3>Receipt #1</h3>
+                <p>Code: <input type = "text" name = "code1" /></p>
+                <p>Item/Remarks: <input type = "text" name = "item1" /></p>
+                <p>Supplier: <input type = "text" name = "supname1" /></p>
+                <p>Supplier Contact: <input type = "text" name = "supcontact1" /></p>
+                <p>Amount: <input type = "number" name = "amount1" step=".01"/></p>
+
+                <h3>Receipt #2</h3>
+                <p>Code: <input type = "text" name = "code2" /></p>
+                <p>Item/Remarks: <input type = "text" name = "item2" /></p>
+                <p>Supplier: <input type = "text" name = "supname2" /></p>
+                <p>Supplier Contact: <input type = "text" name = "supcontact2" /></p>
+                <p>Amount: <input type = "number" name = "amount2" step=".01"/></p>
+
+                <h3>Receipt #3</h3>
+                <p>Code: <input type = "text" name = "code3" /></p>
+                <p>Item/Remarks: <input type = "text" name = "item3" /></p>
+                <p>Supplier: <input type = "text" name = "supname3" /></p>
+                <p>Supplier Contact: <input type = "text" name = "supcontact3" /></p>
+                <p>Amount: <input type = "number" name = "amount3" step=".01"/></p>
+                
+                <h3>Receipt #4</h3>
+                    <p>Code: <input type = "text" name = "code4" /></p>
+                    <p>Item/Remarks: <input type = "text" name = "item4" /></p>
+                    <p>Supplier: <input type = "text" name = "supname4" /></p>
+                    <p>Supplier Contact: <input type = "text" name = "supcontact4" /></p>
+                    <p>Amount: <input type = "number" name = "amount4" step=".01"/></p>
+
+                <h3>Receipt #5</h3>
+                    <p>Code: <input type = "text" name = "code5" /></p>
+                    <p>Item/Remarks: <input type = "text" name = "item5" /></p>
+                    <p>Supplier: <input type = "text" name = "supname5" /></p>
+                    <p>Supplier Contact: <input type = "text" name = "supcontact5" /></p>
+                    <p>Amount: <input type = "number" name = "amount5" step=".01"/></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <p><input type = "submit" value = "Generate Form" /></p>
+            <a href="/"> Back </a>
+        </div>
+      </form>
+   </body>
+</html>

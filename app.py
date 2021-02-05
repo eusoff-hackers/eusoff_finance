@@ -22,11 +22,11 @@ def claims():
     if request.method == 'POST':
         return render_template('claims.html')
 
-@app.route('/basic_info', methods = ['POST', 'GET'])
+@app.route('/input', methods = ['POST', 'GET'])
 def formA_input():
     # print(request.form)
     dict.update(request.form)
-    return render_template('formA_input.html')
+    return render_template('form_input.html')
 
 # incomplete!
 @app.route('/formA', methods = ['POST', 'GET'])
