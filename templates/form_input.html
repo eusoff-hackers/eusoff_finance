@@ -1,12 +1,7 @@
-<!-- 1. Putting all 10 claim deets 2. Creating according to count -->
-<div class="row">
-    <div class="column"></div>
-    <div class="column"></div>
-</div>
 <style>
     .column {
     float: left;
-    width: 25%;
+    width: 50%;
   }
   
   /* Clear floats */
@@ -22,7 +17,7 @@
       width: 50%;
     }
   } */
-  
+
   /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
   @media screen and (max-width: 600px) {
     .column {
@@ -44,16 +39,8 @@
             <p>Event: <input type = "text" name = "event" /></p>
             <p>Date: <input type = "date" name = "date" /></p>
             <!-- can be linked from basic info -->
-            <p>Reference No. of Form: <input type = "text" name = "refnum" /></p>
+            <p>Reference No.: <input type = "text" name = "refnum" /></p>
             <p>Total amount: <input type = "number" name = "totalamt" step=".01"/></p>
-            <label for="type">Reason for Acknowledgement:</label>
-                <select id="type" name="reasonack">
-                <option value="blank"></option>
-                <option value="lack_info">Original receipt lack information on supplier</option>
-                <option value="damage">Receipt damaged beyond salvage</option>
-                <option value="not_issued">No receipt was issued</option>
-                </select>
-            <p>Reason (If no receipt was issued)/ Other Remarks: <input type = 'text' name = 'remarks'/></p>
                 <br>
                 <br>
         </div>
@@ -192,6 +179,14 @@
             </div>
             <div class="column">
                 <h2>Details of Acknowledgement Receipt</h2>
+                <label for="type">Reason for Acknowledgement:</label>
+                <select id="type" name="reasonack">
+                <option value="blank"></option>
+                <option value="lack_info">Original receipt lack information on supplier</option>
+                <option value="damage">Receipt damaged beyond salvage</option>
+                <option value="not_issued">No receipt was issued</option>
+                </select>
+                <p>Reason (If no receipt was issued) / Other Remarks: <input type = 'text' name = 'remarks'/></p>
                 <h3>Receipt #1</h3>
                 <p>Code: <input type = "text" name = "code1" /></p>
                 <p>Item/Remarks: <input type = "text" name = "item1" /></p>
