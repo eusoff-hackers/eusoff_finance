@@ -4,6 +4,9 @@
     h2 { margin:0.5em;}
     h3 { margin:0.5em;}
     h6 { margin-top:0em;}
+    @media print {
+        div { page-break-inside: avoid; }
+    }
 </style>
 <div style="margin: 5% 10%;">
     <p style="text-align: right;"><em>Appendix A</em></p>
@@ -67,7 +70,7 @@
     <tbody>
     <tr>
     <td style="width: 90%; height: 17px;">TOTAL: S$</td>
-    <td style="width: 10%; height: 17px; word-break:break-all;">{{{{input_dict.totalamt}}}}</td>
+    <td style="width: 10%; height: 17px; word-break:break-all;">{{input_dict.totalamt}}</td>
     </tr>
     </tbody>
     </table>
