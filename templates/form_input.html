@@ -28,7 +28,7 @@
 
 <html>
    <body>
-      <form action = "http://localhost:5000/formA " method = "post">
+      <form action = "http://localhost:5000/formA " action = "" method = "post">
         <div class="row">
             <h2>Overall Details</h2>
             <!-- can be linked from basic info -->
@@ -41,7 +41,7 @@
             <!-- can be linked from basic info -->
             <p>Reference No.: <input type = "text" name = "refnum" /></p>
             <p>Total amount: <input type = "number" name = "totalamt" step=".01"/></p>
-                <br>
+            <a href="/"> Back </a>
                 <br>
         </div>
 
@@ -176,6 +176,9 @@
                 <option value="prize">Prize</option>
                 <option value="svp">Small Value Purchase</option>
                 </select>
+
+                <p><input type = "submit" formaction="/formB" value = "Generate Form" /></p>
+                <a href="/"> Back </a>
             </div>
             <div class="column">
                 <h2>Details of Acknowledgement Receipt</h2>
@@ -221,11 +224,13 @@
                     <p>Supplier: <input type = "text" name = "supname5" /></p>
                     <p>Supplier Contact: <input type = "text" name = "supcontact5" /></p>
                     <p>Amount: <input type = "number" name = "amount5" step=".01"/></p>
+                
+                <p><input type = "submit" formaction="/formA" value = "Generate Ack Form" /></p>
             </div>
         </div>
 
         <div class="row">
-            <p><input type = "submit" value = "Generate Form" /></p>
+            <!-- <p><input type = "submit" value = "Generate Form" /></p> -->
             <a href="/"> Back </a>
         </div>
       </form>

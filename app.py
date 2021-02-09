@@ -51,7 +51,6 @@ def formA():
     else: 
         remarks = dict["remarks"]
     
-    # totalA = float(dict["amount1"]) + float(dict["amount2"]) + float(dict["amount3"]) + float(dict["amount4"]) + float(dict["amount5"])
     return render_template('formA.html', date= date, input_dict= dict, reasonack= reasonack, remarks= remarks)
 
 # incomplete!
@@ -73,14 +72,14 @@ def formB():
     matric = dict["matric"]
     contact = dict["contact"]
     event = dict["event"]
-    ref = dict["ref"]
+    refnum = dict["refnum"]
     old_date = dict["date"]
     datetimeobject = datetime.datetime.strptime(old_date, '%Y-%m-%d')
     date = datetimeobject.strftime('%d/%m/%Y')
 
     print(dict)
     if request.method == 'POST':
-        return render_template('formB.html', name = name, matric = matric, contact = contact, event = event, ref = ref, date = date)
+        return render_template('formB.html', name = name, matric = matric, contact = contact, event = event, refnum = refnum, date = date)
 
 # incomplete!
 @app.route('/formC')
