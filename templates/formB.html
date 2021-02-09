@@ -15,11 +15,11 @@
 <p><strong><span style="text-decoration: underline;">Reimbursement of Expenditure</span></strong></p>
 <p>Please arrange for reimbursement as follows:-</p>
 <p>Payee's Name:<span style="text-decoration: underline;">&nbsp; &nbsp;{{name}}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span> Matric Number: <span style="text-decoration: underline;">&nbsp; &nbsp;{{matric}}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
-<p>Total Amount: <span style="text-decoration: underline;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span> Contact Number: <span style="text-decoration: underline;">&nbsp; &nbsp;{{contact}}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<p>Total Amount: <span style="text-decoration: underline;">&nbsp; &nbsp; {{total}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span> Contact Number: <span style="text-decoration: underline;">&nbsp; &nbsp;{{contact}}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
 <p>Please debit this amount from <span style="text-decoration: underline;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
 
 <!-- OG table top borderline is 2-lined -->
-<table style="border-collapse: collapse; width: 97.2527%; height: 170px;" border="1">
+<table style="border-collapse: collapse; width: 97.2527%; height: 170px;" border=1>
 <tbody>
 <tr style="height: 17px;">
 <td style="width: 13.3682%; height: 17px; text-align: center;">Code No.</td>
@@ -28,21 +28,27 @@
 <td style="width: 13.0192%; height: 17px; text-align: center;">GL Code</td>
 <td style="width: 17.2077%; height: 17px; text-align: center;">Amount ($)</td>
 </tr>
-<tr style="height: 17px;">
-<td style="width: 13.3682%; height: 17px;">&nbsp;</td>
-<td style="width: 15.8116%; height: 17px;">&nbsp;</td>
-<td style="width: 40.5933%; height: 17px;">{{description1}}</td>
-<td style="width: 13.0192%; height: 17px;">&nbsp;</td>
-<td style="width: 17.2077%; height: 17px;">&nbsp;</td>
-</tr>
-<tr style="height: 17px;">
-<td style="width: 13.3682%; height: 17px;">&nbsp;</td>
-<td style="width: 15.8116%; height: 17px;">&nbsp;</td>
-<td style="width: 40.5933%; height: 17px;">{{description2}}</td>
-<td style="width: 13.0192%; height: 17px;">&nbsp;</td>
-<td style="width: 17.2077%; height: 17px;">&nbsp;</td>
-</tr>
-<tr style="height: 17px;">
+{% for item in receipts %}
+    <tr style="height: 17px;">
+    <td style="width: 13.3682%; height: 17px;">&nbsp;</td>
+    <td style="width: 15.8116%; height: 17px;">{{item['num'+loop.index|string]}}</td>
+    <td style="width: 40.5933%; height: 17px;">{{item['description'+loop.index|string]}}</td>
+    <td style="width: 13.0192%; height: 17px;">&nbsp;</td>
+    <td style="width: 17.2077%; height: 17px;">{{item['amount'+loop.index|string]}}</td>
+    </tr>
+{% endfor %}
+{% if 10 - receipts|length > 0 %}
+    {% for n in range(10-receipts|length) %}
+        <tr style="height: 17px;">
+        <td style="width: 13.3682%; height: 17px;">&nbsp;</td>
+        <td style="width: 15.8116%; height: 17px;">&nbsp;</td>
+        <td style="width: 40.5933%; height: 17px;">&nbsp;</td>
+        <td style="width: 13.0192%; height: 17px;">&nbsp;</td>
+        <td style="width: 17.2077%; height: 17px;">&nbsp;</td>
+        </tr>
+    {% endfor %}
+{% endif %}
+<!-- <tr style="height: 17px;">
 <td style="width: 13.3682%; height: 17px;">&nbsp;</td>
 <td style="width: 15.8116%; height: 17px;">&nbsp;</td>
 <td style="width: 40.5933%; height: 17px;">{{description3}}</td>
@@ -96,8 +102,8 @@
 <td style="width: 15.8116%;">&nbsp;</td>
 <td style="width: 40.5933%;">{{description10}}</td>
 <td style="width: 13.0192%;">&nbsp;</td>
-<td style="width: 17.2077%;">&nbsp;</td>
-</tr>
+<td style="width: 17.2077%;">&nbsp;</td> 
+</tr> -->
 </tbody>
 </table>
 <table style="border-collapse: collapse; width: 97.2527%;" border="1">

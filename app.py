@@ -1,7 +1,11 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify, make_response
+from flask_cors import CORS
 import datetime
+import json
+import pdfkit
 app = Flask(__name__)
 app.debug = True
+cors = CORS(app)
 
 # everything is stored in this dictionary
 dict = {}
@@ -52,7 +56,14 @@ def formA():
         remarks = dict["remarks"]
     
     # totalA = float(dict["amount1"]) + float(dict["amount2"]) + float(dict["amount3"]) + float(dict["amount4"]) + float(dict["amount5"])
-    return render_template('formA.html', date= date, input_dict= dict, reasonack= reasonack, remarks= remarks)
+    x = {
+        "date": date,
+        "input_dict": dict,
+        "reasonack": reasonack,
+        "remarks": remarks
+    }
+    return json.dumps(x)
+    # return render_template('formA.html', date= date, input_dict= dict, reasonack= reasonack, remarks= remarks)
 
 # incomplete!
 @app.route('/formA1')
@@ -81,6 +92,37 @@ def formB():
     print(dict)
     if request.method == 'POST':
         return render_template('formB.html', name = name, matric = matric, contact = contact, event = event, ref = ref, date = date)
+
+# class Pdf():
+#     def render_pdf(self, name, html):
+#         from xhtml2pdf import pisa
+#         from io import StringIO
+
+#         pdf = StringIO()
+
+#         pisa.CreatePDF(StringIO(html), pdf)
+
+#         return pdf.getvalue()
+
+@app.route('/generateFormB', methods = ['POST', 'GET'])
+def generateFormB():
+    data = request.get_json()
+    print(data)
+    name = data["name"]
+    matric = data["matric"]
+    contact =  data["contact"]
+    event =  data["event"]
+    ref =  data["refnum"]
+    old_date =  data["date"]
+    datetimeobject = datetime.datetime.strptime(old_date, '%Y-%m-%d')
+    date = datetimeobject.strftime('%d/%m/%Y')
+    total= data["total"]
+    html = render_template('formB.html', receipts= data["receipts"], name = name, matric = matric, contact = contact, event = event, ref = ref, date = date, total=total)
+    pdf = pdfkit.from_string(html, False)
+    response = make_response(pdf)
+    response.headers["Content-Type"] = "application/pdf"
+    response.headers["Content-Disposition"] = "inline; filename=output.pdf"
+    return response
 
 # incomplete!
 @app.route('/formC')
