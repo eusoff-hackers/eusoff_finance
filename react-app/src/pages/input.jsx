@@ -43,7 +43,7 @@ const InputForm = ({ setActiveItem }) => {
   return (
     <Segment
       textAlign='center'
-      style={{ minHeight: '100vh', padding: '1em 1em' }}
+      style={{ marginTop: '50px', minHeight: 'calc(100vh - 50px)', padding: '1em 1em' }}
       vertical
     >
       <Header>Overall Details</Header>
