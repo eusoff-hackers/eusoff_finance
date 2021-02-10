@@ -88,8 +88,8 @@ const Claims = ({ setActiveItem }) => {
       style={{ minHeight: '100vh', padding: '1em 1em' }}
       vertical
     >
-      <Header>Details of Reimbursement Expenditure</Header>
-      <Grid columns={16} textAlign='left'>
+      <Header style={{ marginTop: '30px' }}>Details of Reimbursement Expenditure</Header>
+      <Grid columns={16} textAlign='left' style={{ maxHeight: 'calc(100vh - 150px)', overflow: 'scroll' }}>
         <Grid.Column width={5}></Grid.Column>
         <Grid.Column width={6}>
           <Form size='medium' key='medium' onSubmit={onSubmit}>
