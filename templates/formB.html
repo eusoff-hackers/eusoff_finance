@@ -30,11 +30,11 @@
 </tr>
 {% for item in receipts %}
     <tr style="height: 17px;">
-    <td style="width: 13.3682%; height: 17px;">&nbsp;</td>
-    <td style="width: 15.8116%; height: 17px;">{{item['num'+loop.index|string]}}</td>
-    <td style="width: 40.5933%; height: 17px;">{{item['description'+loop.index|string]}}</td>
-    <td style="width: 13.0192%; height: 17px;">&nbsp;</td>
-    <td style="width: 17.2077%; height: 17px;">{{item['amount'+loop.index|string]}}</td>
+    <td style="width: 13.3682%; height: 17px; word-break:break-all;">&nbsp;</td>
+    <td style="width: 15.8116%; height: 17px; word-break:break-all;">{{item['num'+loop.index|string]}}</td>
+    <td style="width: 40.5933%; height: 17px; word-break:break-all;">{{item['description'+loop.index|string]}}</td>
+    <td style="width: 13.0192%; height: 17px; word-break:break-all;">&nbsp;</td>
+    <td style="width: 17.2077%; height: 17px; word-break:break-all;">{{item['amount'+loop.index|string]}}</td>
     </tr>
 {% endfor %}
 {% if 10 - receipts|length > 0 %}
@@ -48,62 +48,6 @@
         </tr>
     {% endfor %}
 {% endif %}
-<!-- <tr style="height: 17px;">
-<td style="width: 13.3682%; height: 17px;">&nbsp;</td>
-<td style="width: 15.8116%; height: 17px;">&nbsp;</td>
-<td style="width: 40.5933%; height: 17px;">{{description3}}</td>
-<td style="width: 13.0192%; height: 17px;">&nbsp;</td>
-<td style="width: 17.2077%; height: 17px;">&nbsp;</td>
-</tr>
-<tr style="height: 17px;">
-<td style="width: 13.3682%; height: 17px;">&nbsp;</td>
-<td style="width: 15.8116%; height: 17px;">&nbsp;</td>
-<td style="width: 40.5933%; height: 17px;">{{description4}}</td>
-<td style="width: 13.0192%; height: 17px;">&nbsp;</td>
-<td style="width: 17.2077%; height: 17px;">&nbsp;</td>
-</tr>
-<tr style="height: 17px;">
-<td style="width: 13.3682%; height: 17px;">&nbsp;</td>
-<td style="width: 15.8116%; height: 17px;">&nbsp;</td>
-<td style="width: 40.5933%; height: 17px;">{{description5}}</td>
-<td style="width: 13.0192%; height: 17px;">&nbsp;</td>
-<td style="width: 17.2077%; height: 17px;">&nbsp;</td>
-</tr>
-<tr style="height: 17px;">
-<td style="width: 13.3682%; height: 17px;">&nbsp;</td>
-<td style="width: 15.8116%; height: 17px;">&nbsp;</td>
-<td style="width: 40.5933%; height: 17px;">{{description6}}</td>
-<td style="width: 13.0192%; height: 17px;">&nbsp;</td>
-<td style="width: 17.2077%; height: 17px;">&nbsp;</td>
-</tr>
-<tr style="height: 17px;">
-<td style="width: 13.3682%; height: 17px;">&nbsp;</td>
-<td style="width: 15.8116%; height: 17px;">&nbsp;</td>
-<td style="width: 40.5933%; height: 17px;">{{description7}}</td>
-<td style="width: 13.0192%; height: 17px;">&nbsp;</td>
-<td style="width: 17.2077%; height: 17px;">&nbsp;</td>
-</tr>
-<tr style="height: 17px;">
-<td style="width: 13.3682%; height: 17px;">&nbsp;</td>
-<td style="width: 15.8116%; height: 17px;">&nbsp;</td>
-<td style="width: 40.5933%; height: 17px;">{{description8}}</td>
-<td style="width: 13.0192%; height: 17px;">&nbsp;</td>
-<td style="width: 17.2077%; height: 17px;">&nbsp;</td>
-</tr>
-<tr style="height: 17px;">
-<td style="width: 13.3682%; height: 17px;">&nbsp;</td>
-<td style="width: 15.8116%; height: 17px;">&nbsp;</td>
-<td style="width: 40.5933%; height: 17px;">{{description9}}</td>
-<td style="width: 13.0192%; height: 17px;">&nbsp;</td>
-<td style="width: 17.2077%; height: 17px;">&nbsp;</td>
-</tr>
-<tr>
-<td style="width: 13.3682%;">&nbsp;</td>
-<td style="width: 15.8116%;">&nbsp;</td>
-<td style="width: 40.5933%;">{{description10}}</td>
-<td style="width: 13.0192%;">&nbsp;</td>
-<td style="width: 17.2077%;">&nbsp;</td> 
-</tr> -->
 </tbody>
 </table>
 <table style="border-collapse: collapse; width: 97.2527%;" border="1">
