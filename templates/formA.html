@@ -38,6 +38,17 @@
         <td style="width: 17.2077%; height: 17px; word-break:break-all;">{{item['amount']}}</td>
         </tr>
     {% endfor %}
+    {% if 5 - receipts|length > 0 %}
+        {% for n in range(10-receipts|length) %}
+            <tr style="height: 17px;">
+            <td style="width: 13.3682%; height: 17px;">&nbsp;</td>
+            <td style="width: 15.8116%; height: 17px;">&nbsp;</td>
+            <td style="width: 40.5933%; height: 17px;">&nbsp;</td>
+            <td style="width: 13.0192%; height: 17px;">&nbsp;</td>
+            <td style="width: 17.2077%; height: 17px;">&nbsp;</td>
+            </tr>
+        {% endfor %}
+    {% endif %}
     </tbody>
     </table>
     <table style="border-collapse: collapse; width: 100%;" border="1">
