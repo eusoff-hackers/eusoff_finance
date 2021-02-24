@@ -14,9 +14,9 @@ dict = {}
 # def basic_info():
 #     return render_template('basic_info.html')
 
-@app.route('/')
-def index():
-    return render_template('index.html')    
+# @app.route('/')
+# def index():
+#     return render_template('index.html')    
 
 # incomplete: Auto-generate Ref number (eg: SMC2021-number > [COMM][AY]-[NUM][T/C/E])
 @app.route('/claims', methods = ['POST', 'GET'])
@@ -33,39 +33,39 @@ def formA_input():
     return render_template('form_input.html')
 
 # incomplete!
-@app.route('/formA', methods = ['POST', 'GET'])
-def formA():
-    dict.update(request.form)
-    print(dict)
-    datetimeobject = datetime.datetime.strptime(dict["date"], '%Y-%m-%d')
-    date = datetimeobject.strftime('%d/%m/%Y')
+# @app.route('/formA', methods = ['POST', 'GET'])
+# def formA():
+#     dict.update(request.form)
+#     print(dict)
+#     datetimeobject = datetime.datetime.strptime(dict["date"], '%Y-%m-%d')
+#     date = datetimeobject.strftime('%d/%m/%Y')
 
-    if dict["reasonack"] == "not_issued":
-        reasonack = "NO RECEIPT WAS ISSUED"
-    elif dict["reasonack"] == "lack_info":
-        reasonack = "ORIGINAL RECEIPT LACK INFORMATION ON SUPPLIER"
-    elif dict["reasonack"] == "damage":
-        reasonack = "RECEIPT DAMANGED BEYOND SALVAGE"
-    else:
-        reasonack = "ORIGINAL RECEIPT LACK INFORMATION ON SUPPLIER/RECEIPT DAMANGED BEYOND SALVAGE/NO RECEIPT WAS ISSUED"
+#     if dict["reasonack"] == "not_issued":
+#         reasonack = "NO RECEIPT WAS ISSUED"
+#     elif dict["reasonack"] == "lack_info":
+#         reasonack = "ORIGINAL RECEIPT LACK INFORMATION ON SUPPLIER"
+#     elif dict["reasonack"] == "damage":
+#         reasonack = "RECEIPT DAMANGED BEYOND SALVAGE"
+#     else:
+#         reasonack = "ORIGINAL RECEIPT LACK INFORMATION ON SUPPLIER/RECEIPT DAMANGED BEYOND SALVAGE/NO RECEIPT WAS ISSUED"
     
-    if dict["remarks"] == "":
-        remarks = " "
-        print(remarks)
-    else: 
-        remarks = dict["remarks"]
+#     if dict["remarks"] == "":
+#         remarks = " "
+#         print(remarks)
+#     else: 
+#         remarks = dict["remarks"]
     
-    return render_template('formA.html', date= date, input_dict= dict, reasonack= reasonack, remarks= remarks)
+#     return render_template('formA.html', date= date, input_dict= dict, reasonack= reasonack, remarks= remarks)
 
 # incomplete!
-@app.route('/formA1')
-def formA1():
-    return render_template('formA1.html')
+# @app.route('/formA1')
+# def formA1():
+#     return render_template('formA1.html')
 
-# incomplete!
-@app.route('/formA2')
-def formA2():
-    return render_template('formA2.html')
+# # incomplete!
+# @app.route('/formA2')
+# def formA2():
+#     return render_template('formA2.html')
 
 # incomplete: Auto-generate Code number
 # IF GOT TIME: Make this a downloadable form through button click, on this html list the things they need to prepare for WQ
@@ -116,21 +116,57 @@ def generateFormB():
     response.headers["Content-Disposition"] = "inline; filename=output.pdf"
     return response
 
-# incomplete!
-@app.route('/formC')
-def formC():
-    return render_template('formC.html')
+@app.route('/generateFormA', methods = ['POST', 'GET'])
+def generateFormA():
+    data = request.get_json()
+    print(data)
+    name = data["name"]
+    matric = data["matric"]
+    contact =  data["contact"]
+    event =  data["event"]
+    ref =  data["refnum"]
+    old_date =  data["date"]
+    roomnum = data["roomnum"]
+    datetimeobject = datetime.datetime.strptime(old_date, '%Y-%m-%d')
+    date = datetimeobject.strftime('%d/%m/%Y')
+    total= data["ackTotalAmount"]
 
-# incomplete!
-@app.route('/formD')
-def formD():
-    return render_template('formD.html')
+    if data["reasonAck"] == "not_issued":
+        reasonack = "NO RECEIPT WAS ISSUED"
+    elif data["reasonAck"] == "lack_info":
+        reasonack = "ORIGINAL RECEIPT LACK INFORMATION ON SUPPLIER"
+    elif data["reasonAck"] == "damage":
+        reasonack = "RECEIPT DAMANGED BEYOND SALVAGE"
+    else:
+        reasonack = "ORIGINAL RECEIPT LACK INFORMATION ON SUPPLIER/RECEIPT DAMANGED BEYOND SALVAGE/NO RECEIPT WAS ISSUED"
+    
+    if data["remarks"] == "":
+        remarks = " "
+    else: 
+        remarks = data["remarks"]
+
+    html = render_template('formA.html', receipts= data["ackReceipts"], name = name, matric = matric, contact = contact, event = event, ref = ref, date = date, total=total, roomnum = roomnum, reasonack= reasonack, remarks=remarks)
+    pdf = pdfkit.from_string(html, False)
+    response = make_response(pdf)
+    response.headers["Content-Type"] = "application/pdf"
+    response.headers["Content-Disposition"] = "inline; filename=output.pdf"
+    return response
+
+# # incomplete!
+# @app.route('/formC')
+# def formC():
+#     return render_template('formC.html')
+
+# # incomplete!
+# @app.route('/formD')
+# def formD():
+#     return render_template('formD.html')
 
 
-# incomplete!
-@app.route('/formE')
-def formE():
-    return render_template('formE.html')
+# # incomplete!
+# @app.route('/formE')
+# def formE():
+#     return render_template('formE.html')
 
 # IN PROGRESS: Upload receipts (https://www.tutorialspoint.com/flask/flask_file_uploading.htm)
 # IN PROGRESS: Mail? For those that need approval first (https://www.tutorialspoint.com/flask/flask_mail.htm)
