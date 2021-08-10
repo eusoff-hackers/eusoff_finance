@@ -12,7 +12,6 @@ const Home = () => {
   return (
     <Segment
       inverted
-      color='violet'
       textAlign='center'
       style={{ minHeight: '100vh', padding: '1em 1em' }}
       vertical

@@ -3,6 +3,9 @@ import {
   Form,
   Grid,
   Button,
+  Checkbox,
+  Input,
+  Label,
   Segment,
   Header,
 } from 'semantic-ui-react';
@@ -32,6 +35,13 @@ const Claims = ({ setActiveItem }) => {
   const [reasonAck, setReasonAck] = useState('');
   const [remarks, setRemarks] = useState('');
 
+  const amtInputLabeled = () => (
+      <Input labelPosition='right' type='text' placeholder='Amount'>
+        <Label basic>$</Label>
+        <input />
+        <Label>.00</Label>
+      </Input>
+  )
   const addReceipts = () => {
     const numReceipts = receipts.length + 1;
     const newReceipt = {
@@ -98,7 +108,7 @@ const Claims = ({ setActiveItem }) => {
     setReceipts(updateReceipts);
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = (e, form) => {
     // e.preventDefault();
     let payload = JSON.parse(localStorage.getItem("formData"));
     // let total = 0;
@@ -110,7 +120,8 @@ const Claims = ({ setActiveItem }) => {
     payload['receipts'] = receipts;
     payload['total'] = totalAmount;
     console.log("Payload: ", payload);
-    axios.post('http://localhost:5000/generateFormB', payload, config)
+    var formUrl = 'http://localhost:5000/generateForm' + form;
+    axios.post(formUrl, payload, config)
     .then((res) => {
       console.log(res.data);
       //Create a Blob from the PDF Stream
@@ -183,16 +194,30 @@ const Claims = ({ setActiveItem }) => {
     setTotal(0);
     localStorage.removeItem("totalAmount");
   }
+
+  const deleteReceipt = (event, index) => {
+    let updateReceipts = [...receipts];
+    if (event.target.name.slice(0, -1) === 'needAck') {
+      updateReceipts[index][event.target.name] = event.target.checked;
+      if (event.target.checked === false) {
+        deleteSupplierDetails(event.target.name);
+      }
+    } else {
+      updateReceipts[index][event.target.name] = event.target.value;
+    }
+    calcTotal(updateReceipts);
+    setReceipts(updateReceipts);
+  }
+
   return (
     <Segment
       textAlign='center'
       style={{ minHeight: '100vh', padding: '1em 1em' }}
       vertical
     >
-      <Header style={{ marginTop: '30px' }}>Details of Reimbursement Expenditure</Header>
-      <Grid columns={16} textAlign='left' style={{ maxHeight: 'calc(100vh - 150px)', overflow: 'scroll' }}>
-        <Grid.Column width={5}></Grid.Column>
-        <Grid.Column width={6}>
+      <Header style={{ margin: '50px 0px 40px' }}>Fill in details for your expenditure reimbursement below</Header>
+      <Grid textAlign='left' style={{ maxHeight: 'calc(100vh - 150px)', overflow: 'scroll' }} centered>
+        <Grid.Column width={8} stretched={false}>
           <Form size='medium' key='medium' /*onSubmit={onSubmit}*/>
             {receipts.map((receipt, index) => {
               const keys = Object.keys(receipt);
@@ -201,85 +226,102 @@ const Claims = ({ setActiveItem }) => {
               console.log(ackReceipts);
               return (
                 <div key={index}>
-                  <h3>Receipt #{index+1}</h3>
-                  <Form.Field width={16}>
-                    <label>Receipt Number:</label>
-                    <input type = "text" name ={keys[0]} value={receipt[keys[0]]} onChange={(e) => onChange(e,index)}/>
-                  </Form.Field>
-                  <Form.Field width={16}>
-                    <label>Description:</label>
-                    <input type = "text" name ={keys[1]} value={receipt[keys[1]]} onChange={(e) => onChange(e,index)}/>
-                  </Form.Field>
-                  <Form.Field width={16}>
-                    <label>Amount:</label>
-                    <input type = "number" name ={keys[2]} step=".01" value={receipt[keys[2]]} onChange={(e) => onChange(e,index)}/>
-                  </Form.Field>
-                  <Form.Field width={16}>
-                    <label for="type">Receipt Type:</label>
-                    <select id="type" name={keys[3]} onChange={(e) => onChange(e,index)}>
-                    <option value="blank"></option>
-                    <option value="fnb">Food and Beverage</option>
-                    <option value="prize">Prize</option>
-                    <option value="svp">Small Value Purchase</option>
-                    </select>
-                  </Form.Field>
-                  <Form.Field width={16}>
-                    <label
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        '&:hover': {
-                          cursor: 'pointer',
-                        }
-                      }}
+                  <div style={{ padding: 15, marginBottom: 50, boxShadow: "0px 0px 15px #C9C9C9", backgroundColor: '#F5F5F5', borderRadius: 10}}>
+                    <Button
+                        circular
+                        icon='trash'
+                        floated='right'
+                        onClick={(e) => deleteReceipt(e, index)}
                     >
-                      <input style={{ marginRight: '10px' }} type = "checkbox" name ={keys[4]} checked={needAck} onChange={(e) => onChange(e,index)}/>
-                      Need Acknowledgement
-                    </label>
-                  </Form.Field>
-                  {needAck === true && (
-                    <>
-                      <Form.Field width={16}>
-                        <label>Supplier:</label>
-                        <input 
-                          type = "text" 
-                          name ={`supplier${index+1}`} 
-                          value={ackReceipts[`needAck${index+1}`] ? ackReceipts[`needAck${index+1}`][`supplier`] : undefined} 
-                          onChange={(e) => updateSupplierDetails(e.target.value, index)}
-                        />
-                      </Form.Field>
-                      <Form.Field width={16}>
-                        <label>Supplier Contact:</label>
-                        <input 
-                          type = "text" 
-                          name ={`supplierContact${index+1}`}
-                          value={ackReceipts[`needAck${index+1}`] ? ackReceipts[`needAck${index+1}`][`supplierContact`] : undefined} 
-                          onChange={(e) => updateSupplierDetails(e.target.value, index, true)}
-                        />
-                      </Form.Field>
-                    </>
-                  )}
+                    </Button>
+                    <Form.Field width={16}>
+                      <label>Receipt Number:</label>
+                      <input type = "text" name ={keys[0]} value={receipt[keys[0]]} onChange={(e) => onChange(e,index)}/>
+                    </Form.Field>
+                    <Form.Field width={16}>
+                      <label>Description:</label>
+                      <input type = "text" name ={keys[1]} value={receipt[keys[1]]} onChange={(e) => onChange(e,index)}/>
+                    </Form.Field>
+                    <Form.Field width={16}>
+                      <label>Amount:</label>
+                      <Input width={4} labelPosition='right' type='number' step=".01" value={receipt[keys[2]]}>
+                        <Label basic>$</Label>
+                        <input name ={keys[2]} value={receipt[keys[2]]} onChange={(e) => onChange(e,index)}/>
+                      </Input>
+                    </Form.Field>
+                    <Form.Field width={16}>
+                      <label for="type">Receipt Type:</label>
+                      <select id="type" name={keys[3]} onChange={(e) => onChange(e,index)}>
+                      <option value="blank"></option>
+                      <option value="fnb">Food and Beverage</option>
+                      <option value="prize">Prize</option>
+                      <option value="svp">Small Value Purchase</option>
+                      </select>
+                    </Form.Field>
+                    <Form.Field width={16}>
+                      <label
+                          style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            '&:hover': {
+                              cursor: 'pointer',
+                            }
+                          }}
+                      >
+                        <input style={{ marginRight: '10px' }} type = "checkbox" name ={keys[4]} checked={needAck} onChange={(e) => onChange(e,index)}/>
+                        Need Acknowledgement
+                      </label>
+                    </Form.Field>
+                    {needAck === true && (
+                      <>
+                        <Form.Field width={16}>
+                          <label>Supplier:</label>
+                          <input
+                            type = "text"
+                            name ={`supplier${index+1}`}
+                            value={ackReceipts[`needAck${index+1}`] ? ackReceipts[`needAck${index+1}`][`supplier`] : undefined}
+                            onChange={(e) => updateSupplierDetails(e.target.value, index)}
+                          />
+                        </Form.Field>
+                        <Form.Field width={16}>
+                          <label>Supplier Contact:</label>
+                          <input
+                            type = "text"
+                            name ={`supplierContact${index+1}`}
+                            value={ackReceipts[`needAck${index+1}`] ? ackReceipts[`needAck${index+1}`][`supplierContact`] : undefined}
+                            onChange={(e) => updateSupplierDetails(e.target.value, index, true)}
+                          />
+                        </Form.Field>
+                      </>
+                    )}
+                  </div>
                 </div>
-            )})}
-            <Button 
-              fluid
-              style={{ marginTop: '16px' }}
-              color="green"
-              onClick={addReceipts}
-            >
-              Add receipt
-            </Button>
-            <Button 
-              // type='submit' 
-              fluid
-              style={{ marginTop: '16px' }}
-              onClick={onSubmit}
-            >
-              Generate Form B
-            </Button>
+              );
+            })}
+              <Button
+                circular
+                floated='left'
+                icon='add'
+                onClick={addReceipts}
+              >
+              </Button>
+              <Button
+                floated='right'
+                color="green"
+                onClick={(e) => onSubmit(e, "C")}
+              >
+                Generate Form C
+              </Button>
+              <Button
+                  floated='right'
+                  color="green"
+                  onClick={(e) => onSubmit(e, "B")}
+              >
+                  Generate Form B
+              </Button>
             {Object.keys(ackReceipts).length > 0 && (
               <>
-                <Form.Field width={16}>
+                <Form.Field width={16} style={{ marginTop: "20px"}}>
                   <label for="type">Reason for acknowledgement:</label>
                   <select id="type" name="reasonack" onChange={(e) => setReasonAck(e.target.value)}>
                   <option value="blank"></option>
@@ -295,7 +337,6 @@ const Claims = ({ setActiveItem }) => {
                   </Form.Field>
                 )}
                 <Button
-                  fluid
                   style={{ marginTop: '16px' }}
                   onClick={generateFormA}
                 >
@@ -305,7 +346,6 @@ const Claims = ({ setActiveItem }) => {
             )}
           </Form>
         </Grid.Column>
-        <Grid.Column width={5}></Grid.Column>
       </Grid>
       <div 
         style={{ 

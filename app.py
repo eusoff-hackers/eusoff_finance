@@ -153,9 +153,42 @@ def generateFormA():
     return response
 
 # # incomplete!
-# @app.route('/formC')
-# def formC():
-#     return render_template('formC.html')
+@app.route('/formC', methods = ['POST', 'GET'])
+def formC():
+    dict.update(request.form)
+    name = dict["name"]
+    matric = dict["matric"]
+    contact = dict["contact"]
+    event = dict["event"]
+    refnum = dict["refnum"]
+    old_date = dict["date"]
+    datetimeobject = datetime.datetime.strptime(old_date, '%Y-%m-%d')
+    date = datetimeobject.strftime('%d/%m/%Y')
+
+    print(dict)
+    if request.method == 'POST':
+        return render_template('formC.html', name = name, matric = matric, contact = contact, event = event, refnum = refnum, date = date)
+    return render_template('formC.html')
+
+@app.route('/generateFormC', methods = ['POST', 'GET'])
+def generateFormC():
+    data = request.get_json()
+    print(data)
+    name = data["name"]
+    matric = data["matric"]
+    contact =  data["contact"]
+    event =  data["event"]
+    ref =  data["refnum"]
+    old_date =  data["date"]
+    datetimeobject = datetime.datetime.strptime(old_date, '%Y-%m-%d')
+    date = datetimeobject.strftime('%d/%m/%Y')
+    total= data["total"]
+    html = render_template('formC.html', receipts= data["receipts"], name = name, matric = matric, contact = contact, event = event, ref = ref, date = date, total=total)
+    pdf = pdfkit.from_string(html, False)
+    response = make_response(pdf)
+    response.headers["Content-Type"] = "application/pdf"
+    response.headers["Content-Disposition"] = "inline; filename=output.pdf"
+    return response
 
 # # incomplete!
 # @app.route('/formD')

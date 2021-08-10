@@ -10,6 +10,10 @@
     display: table;
      clear: both;
   }
+
+  .receipt {
+      background-color: red;
+  }
   
   /* Responsive layout - makes a two column-layout instead of four columns */
   /* @media screen and (max-width: 900px) {
@@ -49,16 +53,18 @@
             <div class="column">
                 <h2>Details of Reimbursement Expenditure</h2>
                 <h3>Receipt #1</h3>
-                <p>Receipt Number: <input type = "text" name = "receipt1" /></p>
-                <p>Description of Expenses: <input type = "text" name = "description1" /></p>
-                <p>Amount: <input type = "number" name = "amount1" step=".01"/></p>
-                <label for="type">Receipt Type:</label>
-                <select id="type" name="type1">
-                <option value="blank"></option>
-                <option value="fnb">Food and Beverage</option>
-                <option value="prize">Prize</option>
-                <option value="svp">Small Value Purchase</option>
-                </select><br>
+                <div class="receipt">
+                    <p>Receipt Number: <input type = "text" name = "receipt1" /></p>
+                    <p>Description of Expenses: <input type = "text" name = "description1" /></p>
+                    <p>Amount: <input type = "number" name = "amount1" step=".01"/></p>
+                    <label for="type">Receipt Type:</label>
+                    <select id="type" name="type1">
+                    <option value="blank"></option>
+                    <option value="fnb">Food and Beverage</option>
+                    <option value="prize">Prize</option>
+                    <option value="svp">Small Value Purchase</option>
+                    </select>
+                </div>
                 <br>
 
                 <h3>Receipt #2</h3>
